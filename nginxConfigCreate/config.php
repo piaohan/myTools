@@ -11,4 +11,6 @@ return [
 
     'img_url' => 'https://img.xxx.com',
     'apk_url' => 'https://img.xxx.com/apk.php',
+
+    'path' => 'D:\laragon\etc\nginx\sites-enabled\mm.conf',
 ];

@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use RomanPitak\Nginx\Config\Directive;
 use RomanPitak\Nginx\Config\Scope;
@@ -54,5 +54,5 @@ Scope::create()
 
             )
     )
-    ->saveToFile('D:\laragon\etc\nginx\sites-enabled\mm.conf');
+    ->saveToFile($config['path']);
 

@@ -1,11 +1,12 @@
 <?php
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 $table = include 'dbTableName.php';
+
 foreach ($table as $kk => $vv) {
     $dirPath = 'files' . DIRECTORY_SEPARATOR . ucfirst($kk);
     if (!is_dir($dirPath)) {
-        mkdir($dirPath);
+        mkdir($dirPath,0777,true);
     }
     $namespace =  ucfirst($kk);
     $pool =  $kk;
