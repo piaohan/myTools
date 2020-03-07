@@ -1,0 +1,13 @@
+{
+    "name": "admin/video",
+    "authors": [
+        {
+            "name": "xxxx",
+            "email": "xxxx@gmail.com"
+        }
+    ],
+    "require": {
+        "romanpitak/nginx-config-processor": "^0.2.1",
+        "nesbot/carbon": "^2.30"
+    }
+}
