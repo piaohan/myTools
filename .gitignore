@@ -4,6 +4,7 @@
 #生成文件
 /fileCreate/files/*
 collection/res.php
+collection/sqlRes.php
 # netbeans project files
 nbproject
 

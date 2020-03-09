@@ -4,15 +4,14 @@ require '../vendor/autoload.php';
 
 use QL\QueryList;
 
-$bweet = [1990, 1990];
-$file  = 'res.php';
+$bweet = [1990, 2019];
+$file  = 'sqlRes.php';
 $data  = [];
 if (!file_exists($file)) {
     touch($file, 0777, true);
 }
-$myfile = fopen($file, "w") or die("文件打开失败!");
-$txt = "<?php".PHP_EOL." return [";
-fwrite($myfile, $txt);
+$myfile = fopen($file, "w");
+fwrite($myfile, '');
 fclose($myfile);
 for ($i = $bweet[0]; $i <= $bweet[1]; $i++) {
     $data[$i] = [];
@@ -31,20 +30,15 @@ for ($i = $bweet[0]; $i <= $bweet[1]; $i++) {
             'Open_Time' => strtotime($array[1] . ' 0:0:0'),
         ];
         if (intval($array[0]) != 0) {
-            array_push($data[$i], $res);
+            $ot   = $res['Open_Time'];
+            $p    = $res['Period'];
+            $sql = "update h_lottery set Add_Time={$ot} where Period={$p};".PHP_EOL;
+            $myfile = fopen($file, "a");
+            fwrite($myfile, $sql);
+            fclose($myfile);
         }
     }
-    $myfile = fopen($file, "a") or die("数据增加失败!");
-    fwrite($myfile, "'" . $i . "'=>");
-    fwrite($myfile, var_export(($data[$i]), true));
-    fwrite($myfile, ",".PHP_EOL);
-    fclose($myfile);
 }
-$myfile = fopen($file, "a");
-$txt    = "];";
-fwrite($myfile, $txt);
-fclose($myfile);
-die('数据采集完毕-'.date('Y-m-d H:i:s'));
 
-
+die('数据采集完毕-' . date('Y-m-d H:i:s'));
 
