@@ -1,7 +1,9 @@
 # phpstorm project files
 .idea
 /vendor/
+#生成文件
 /fileCreate/files/*
+collection/res.php
 # netbeans project files
 nbproject
 
