@@ -1,6 +1,7 @@
 # phpstorm project files
 .idea
 /vendor/
+/.history
 #生成文件
 /fileCreate/files/*
 collection/res.php

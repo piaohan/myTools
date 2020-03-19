@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>WebSocket</title>
+</head>
+<body>
+<script>
+	var webSocket = function () {
+		ws = new WebSocket("ws://tt.test:9608/websocket?id=26041&name=brooks&device=android");
+		//ws = new WebSocket("ws://tt.test:9888/websocket");
+		ws.onopen = function() {
+		    console.log("连接成功");
+			heartCheck.start();
+		};
+		ws.onmessage = function(e) {
+		    console.log("收到服务端的消息：" + e.data);
+			heartCheck.start();
+		};
+		ws.onclose = function() {
+			console.log("连接关闭");
+		};
+	};
+	webSocket();
+	//心跳检测
+	var heartCheck = {
+		  timeout: 3000, //每隔三秒发送心跳
+		  severTimeout: 75000,  //服务端超时时间
+		  timeoutObj: null,
+		  serverTimeoutObj: null,
+		  start: function(){
+			var _this = this;
+			this.timeoutObj && clearTimeout(this.timeoutObj);
+			this.serverTimeoutObj && clearTimeout(this.serverTimeoutObj);
+			this.timeoutObj = setTimeout(function(){
+				  //这里发送一个心跳，后端收到后，返回一个心跳消息，
+				  //onmessage拿到返回的心跳就说明连接正常
+				  ws.send('{"method":"server.ping","params":[],"id":2}'); // 心跳包
+				  //计算答复的超时时间
+				  _this.serverTimeoutObj = setTimeout(function() {
+					  ws.close();
+				  }, _this.severTimeout);
+			}, this.timeout)
+		  }
+	}
+</script>
+</body>
+</html>

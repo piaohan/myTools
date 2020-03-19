@@ -15,6 +15,7 @@
     "romanpitak/nginx-config-processor": "^0.2.1",
     "nesbot/carbon": "^2.30",
     "jaeger/querylist": "^4.1",
-    "overtrue/chinese-calendar": "^1.0"
+    "overtrue/chinese-calendar": "^1.0",
+    "guzzlehttp/guzzle": "^6.5"
   }
 }
